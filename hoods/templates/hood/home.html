@@ -1,0 +1,50 @@
+{% extends 'hood/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="watch d-flex flex-wrap">
+        <div class="add_hood"id="con2" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-outline-info btn-rounded waves-effect">Post your neighbourhood
+            </button>
+        </div>
+        {% for hood in hoods %}
+
+        <div id="con2">
+            <div class="zayn_2 shadow" style="background-image:url({{hood.image}})">
+                <span class="pop">{{hood.occupants_count}}</span> <span class="date">{{hoods.name}}</span>
+
+                <div class="overlay"></div>
+                <h2>{{hood.name}}</h2>
+                <h4>{{hood.description}}</h4>
+                <a href="/hood/{{hood.id}}"class="btn btn-outline-primary d-flex align-items-start flex-column"role="button"aria-pressed="true">Join link</a>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="modal fade modal-bottom"id="myModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ADD HOOD</h5>
+                    <button class="close"data-dismiss="modal"><span>&times;</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="d-flex flex-column" action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %} {{ formhood |crispy }}
+                        <button type="submit" class="btn btn-success"value="POST">Save Hood</button>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

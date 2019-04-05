@@ -1,0 +1,29 @@
+{% extends 'hood/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% for hood in hoods %}
+<div class="container">
+    <div id="con2">
+        <div class="zayn_2 shadow"
+             style="
+                 background-image:
+                 url({{hood.image}})">
+            <span class="
+                 pop">{{hood.occupants_count}}</span> <span class="date">{{hoods.name}}</span>
+
+            <div class="overlay"></div>
+            <h2>{{hood.name}}</h2>
+            <h4>{{hood.description}}</h4>
+            <a href="/hood/{{hood.id}}"
+               class="btn btn-outline-primary d-flex align-items-start flex-column"
+               role="
+                   button"
+               aria-pressed="true">Join link</a>
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

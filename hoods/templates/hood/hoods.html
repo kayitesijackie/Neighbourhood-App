@@ -1,0 +1,106 @@
+{% extends 'hood/base.html'%}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <h2>HELP ME</h2>
+    <div class="container bussines_hood">
+        <div class="add_hood my-4"
+             data-toggle="modal"
+             data-target="#myBiz">
+            <button type="button"
+                    class="btn btn-outline-info btn-rounded waves-effect">Add Bussiness
+            </button>
+        </div>
+        <div class="card"
+             style="width:25em;">
+            <h2 class="text-center"><a data-toggle="collapse"
+                   href="#footwear"
+                   aria-expanded="false"
+                   aria-controls="footwea">Buiness</a>
+            </h2>
+            <div class="collapse"
+                 id="footwear">
+                <ul>
+                    <li>Name: <p>name</p>
+                    </li>
+                    <li>Bussiness owner: <p>name</p>
+                    </li>
+                    <li>Contact: <p>name</p>
+                    </li>
+                    <li>Email: <p>name</p>
+                    </li>
+                    <li>Description: <p>name</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="hoodland">
+            <img src=""
+                 alt="">
+        </div>
+        <div class="container-fluid mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <h4>Latest News</h4>
+                    <ul class="timeline">
+                        <li>
+                            <a target="_blank"
+                               href="https://www.totoprayogo.com/#">New Web Design</a>
+                            <a href="#"
+                               class="float-right">21 March, 2014</a>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non
+                                nisi
+                                semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis
+                                ligula in
+                                sodales vehicula....</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="comment">
+                <form class="d-flex flex-column"
+                      action="{% url 'hood' %}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    {% csrf_token %} {{ formpost | crispy }}
+                    <input type="submit"
+                           class="btn btn-success btn-lg"
+                           value="POST">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade modal-bottom"
+     id="myBiz">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">ADD HOOD</h5>
+                <button class="close"
+                        data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <form class="d-flex flex-column"
+                      action="{% url 'hood' %}"
+                      method="POST"
+                      enctype="multipart/form-data">
+                    {% csrf_token %} {{ formbiz |crispy }}
+                    <button type="submit"
+                            class="btn btn-success"
+                            value="POST">Save Hood</button>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

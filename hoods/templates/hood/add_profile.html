@@ -1,0 +1,17 @@
+{% extends 'hood/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <form action="{% url 'add_profile' %}"
+          method="post"
+          method="POST"
+          enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ formpro | crispy }}
+        <input type="submit"
+               value="Submit">
+    </form>
+</div>
+
+{% endblock %}

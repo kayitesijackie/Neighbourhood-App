@@ -1,0 +1,38 @@
+
+<nav class="navbar  navbar-toggleable-md navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">NEIGHBORHOOD</a>
+  <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+          <form class="form-inline" action="{% url 'search' %}" method="GET" enctype="multipart/form-data">
+              <input name="q"value="{{request.GET.q}}"type="text" class="form-control"type="text" placeholder="Search">
+              <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+      </li>
+  </ul>
+
+  </form>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  {% if user.is_authenticated %}
+
+  <div class="collapse navbar-collapse" id="navbar1">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+              <a class="nav-link  dropdown-toggle" href="#"data-toggle="dropdown"> Profile </a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/profile"> View Profile</a></li>
+                  <li><a class="dropdown-item"href="/logout">Sign Out </a></li>
+              </ul>
+          </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link" href="/accounts/register/" style="color:#fff;">signup</a></li>
+      </ul>
+
+      <li class="nav-item">
+          <a class="nav-link" href="/accounts/login" style="color:#fff;" >Login</a>
+      </li>
+      {% endif %}
+  </div>
+</nav>
